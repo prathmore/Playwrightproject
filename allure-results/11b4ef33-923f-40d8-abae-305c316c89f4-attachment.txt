@@ -1,0 +1,70 @@
+Number of options in a dropdown: 33
+All the text contenst: [
+  'Account Assistant',
+  'Automaton Tester',
+  'Chief Executive Officer',
+  'Chief Financial Officer',
+  'Chief Technical Officer',
+  'Content Specialist',
+  'CSE_1771863797215',
+  'Customer Success Manager',
+  'Database Administrator',
+  'Finance Manager',
+  'Financial Analyst',
+  'Head of Support',
+  'HR Associate',
+  'HR Manager',
+  'IT Manager',
+  'Network Administrator',
+  'Payroll Administrator',
+  'PO',
+  'Pre-Sales Coordinator',
+  'QA Engineer',
+  'QA Lead',
+  'qwer',
+  'rsjsrii',
+  'Sales Representative',
+  'Scrum Master',
+  'Social Media Marketer',
+  'Software Architect',
+  'Software Engineer',
+  'Support Specialist',
+  'testerZX6b7u',
+  'Testeuse QA',
+  'VP - Client Services',
+  'VP - Sales & Marketing'
+]
+Pring all the options.....
+Account Assistant
+Automaton Tester
+Chief Executive Officer
+Chief Financial Officer
+Chief Technical Officer
+Content Specialist
+CSE_1771863797215
+Customer Success Manager
+Database Administrator
+Finance Manager
+Financial Analyst
+Head of Support
+HR Associate
+HR Manager
+IT Manager
+Network Administrator
+Payroll Administrator
+PO
+Pre-Sales Coordinator
+QA Engineer
+QA Lead
+qwer
+rsjsrii
+Sales Representative
+Scrum Master
+Social Media Marketer
+Software Architect
+Software Engineer
+Support Specialist
+testerZX6b7u
+Testeuse QA
+VP - Client Services
+VP - Sales & Marketing
