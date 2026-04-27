@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.only('select specific date from datepicker', async ({ page }) => {
+test.only(' @masterselect specific date from datepicker', async ({ page }) => {
   await page.goto('https://testautomationpractice.blogspot.com/');
   const datetextbox = page.locator('#datepicker');
   await datetextbox.click();

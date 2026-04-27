@@ -1,5 +1,5 @@
 import {test,expect,Locator} from '@playwright/test'
-test ('dynamic dropdown', async ({page})=>{
+test ('@master dynamic dropdown', async ({page})=>{
 
     await page.goto("https://www.flipkart.com/");
    await page.locator("input[name='q']").fill("mobile");

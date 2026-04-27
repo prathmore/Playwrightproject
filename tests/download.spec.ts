@@ -1,6 +1,6 @@
 import {test,expect,Locator} from '@playwright/test'
 import fs from 'fs'
-test('downloadfile',async({page})=> {
+test('@master downloadfile',async({page})=> {
 
     await page.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html');
 await page.locator('#inputText').fill('Welcomenext');
@@ -18,7 +18,7 @@ if(fileexist)
 
 })
 
-test('Download Pdf file and verify it exists', async ({ page}) => {
+test('@master Download Pdf file and verify it exists', async ({ page}) => {
   // Navigate to the download page
   await page.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html');
 

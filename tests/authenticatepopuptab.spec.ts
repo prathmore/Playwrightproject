@@ -12,7 +12,7 @@ await expect(message).toBeVisible();
 
 })
 
-test('approach2', async ({page}) =>{
+test('@master approach2', async ({page}) =>{
 //await page.goto('https://the-internet.herokuapp.com/basic_auth');
     await page.goto('http://admin:admin@the-internet.herokuapp.com/basic_auth');
 

@@ -23,7 +23,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright'; 
 
 
-test("accessibility test", async({page},testInfo)=>{
+test(" @master accessibility test " , async({page},testInfo)=>{
 
  //await page.goto('https://demowebshop.tricentis.com/');
 await page.goto('https://www.w3.org/');
