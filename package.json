@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:master":"npx playwright test "
+    "test:master": "npx playwright test "
   },
   "keywords": [],
   "author": "",
@@ -15,8 +15,7 @@
     "@types/luxon": "^3.7.1",
     "@types/node": "^22.0.0",
     "ajv": "^8.18.0",
-    "allure-playwright": "^3.4.5",
-    "playwright": "^1.59.1"
+    "allure-playwright": "^3.4.5"
   },
   "dependencies": {
     "@axe-core/playwright": "^4.11.1",
