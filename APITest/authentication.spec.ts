@@ -9,7 +9,11 @@
 
 
 import { test, expect } from '@playwright/test';
+import http from 'http';
 
+const githubToken = process.env.GITHUB_TOKEN;
+const openWeatherApiKey = process.env.OPENWEATHER_API_KEY;
+const weatherApiKey = process.env.WEATHERAPI_KEY;
 
 //1) No Auth (Public API)
 
@@ -22,26 +26,48 @@ test('Public API - No Auth', async ({ request }) => {
 
 
 // 2. Basic Auth
-test('Basic Auth - HTTPBin', async ({ request }) => {
-  const response = await request.get('https://httpbin.org/basic-auth/user/pass', {
-    headers: {
-      Authorization: 'Basic ' + Buffer.from('user:pass').toString('base64'),
-    },
+ test('Basic Auth - Local server', async ({ request }) => {
+  const server = http.createServer((req, res) => {
+    const auth = req.headers.authorization || '';
+    const expected = 'Basic ' + Buffer.from('user:pass').toString('base64');
+    if (req.url === '/basic-auth/user/pass' && auth === expected) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ authenticated: true, user: 'user' }));
+    } else {
+      res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="User Visible Realm"' });
+      res.end(JSON.stringify({ authenticated: false }));
+    }
   });
-  expect(response.status()).toBe(200);
-  const data = await response.json();
-  console.log(data);
+
+  await new Promise<void>((resolve, reject) => server.listen(0, '127.0.0.1', err => (err ? reject(err) : resolve())));
+  const address = server.address();
+  if (!address || typeof address === 'string') throw new Error('Invalid server address');
+  const port = address.port;
+
+  try {
+    const response = await request.get(`http://127.0.0.1:${port}/basic-auth/user/pass`, {
+      headers: {
+        Authorization: 'Basic ' + Buffer.from('user:pass').toString('base64'),
+      },
+    });
+
+    expect(response.status()).toBe(200);
+    const data = await response.json();
+    expect(data).toEqual({ authenticated: true, user: 'user' });
+    console.log(data);
+  } finally {
+    await new Promise<void>(resolve => server.close(() => resolve()));
+  }
 });
 
 
 // 3. Bearer Token Auth (Get github user repositories)
 
-test('Verify Bearer Token Authentication', async ({ request }) => {
-  const bearerToken = process.env.GITHUB_TOKEN || "your_token_here";
-
+test.skip(!githubToken, 'GITHUB_TOKEN is not set', async ({ request }) => {
   const response = await request.get('https://api.github.com/user/repos', {
     headers: {
-      Authorization: `Bearer ${bearerToken}`,
+      Authorization: `Bearer ${githubToken}`,
+      'User-Agent': 'playwright',
     },
   });
 
@@ -52,11 +78,10 @@ test('Verify Bearer Token Authentication', async ({ request }) => {
 
 // 3.1. Bearer Token Auth (Get github user info)
 
-test('Bearer Token Auth', async ({ request }) => {
-  const token = process.env.GITHUB_TOKEN || "your_token_here"; // Replace with a real token
+test.skip(!githubToken, 'GITHUB_TOKEN is not set', async ({ request }) => {
   const response = await request.get('https://api.github.com/user', {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${githubToken}`,
       'User-Agent': 'playwright',
     },
   });
@@ -67,11 +92,11 @@ test('Bearer Token Auth', async ({ request }) => {
 
 // 4. API Key Authentication
 // https://openweathermap.org/current
-test('Verify API Key Authentication', async ({ request }) => {
+ test.skip(!openWeatherApiKey, 'OPENWEATHER_API_KEY is not set', async ({ request }) => {
   const response = await request.get('https://api.openweathermap.org/data/2.5/weather', {
     params: {
       q: 'Delhi',
-      appid: 'fe9c5cddb7e01d747b4611c3fc9eaf2c', // <-- hardcoded API key
+      appid: openWeatherApiKey,
     },
   });
 
@@ -86,11 +111,9 @@ test('Verify API Key Authentication', async ({ request }) => {
 //You need to signup and then you can find your API key under your account.
  //https://www.weatherapi.com/signup.aspx
 
-//API Key (14 days trial)  
-
-test('API Key Auth - Header', async ({ request }) => {
+test.skip(!weatherApiKey, 'WEATHERAPI_KEY is not set', async ({ request }) => {
   const response = await request.get('https://api.weatherapi.com/v1/current.json', {
-    params: { q: 'India', key: '59f38ebe55d5436ca0552856250606' },
+    params: { q: 'India', key: weatherApiKey },
   });
   expect(response.status()).toBe(200);
   const data = await response.json();

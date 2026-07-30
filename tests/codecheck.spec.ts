@@ -1,6 +1,6 @@
 import { test, expect, Locator } from '@playwright/test';
 
-test.only('mukeshbooks', async ({ page }) => {
+test('mukeshbooks', async ({ page }) => {
   await page.goto('https://testautomationpractice.blogspot.com/');
 
   const table: Locator = page.locator('table[name="BookTable"]>tbody');

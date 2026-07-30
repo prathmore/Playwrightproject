@@ -39,7 +39,7 @@ const inputbox=page.frameLocator("[src='frame_1.html']").locator("[name='mytext1
 
 
 
-test.only("inner/child frames demo",async ({page})=>{
+test("inner/child frames demo",async ({page})=>{
 
   await page.goto('https://ui.vision/demo/webtest/frames/');
 

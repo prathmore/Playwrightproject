@@ -21,7 +21,7 @@ test('Partial Update Booking(Patch)', async ({ request }) => {
 
     //1) Create a booking (Post) ---> bookingId
 
-    const requestBody = readJson('testdata/post_request_body.json');
+    const requestBody = readJson('apitestdata/post_request_body.json');
     
     const createResponse = await request.post('/booking', { data:requestBody });
 
@@ -39,7 +39,7 @@ test('Partial Update Booking(Patch)', async ({ request }) => {
 
     //token creation
 
-    const tokenrequestBody = readJson('testdata/token_request_body.json');
+    const tokenrequestBody = readJson('apitestdata/token_request_body.json');
     const tokenresponse = await request.post('/auth', { data: tokenrequestBody });
     expect(tokenresponse.ok()).toBeTruthy();
 
@@ -49,7 +49,7 @@ test('Partial Update Booking(Patch)', async ({ request }) => {
 
 
     //sending update(Put)
-     const patchRequestbody = readJson('testdata/patch_request_body.json');
+     const patchRequestbody = readJson('apitestdata/patch_request_body.json');
     const partialupdateresponse=await request.patch(`/booking/${bookingid}`,
                        {
                         headers:{"Cookie":`token=${token}`},

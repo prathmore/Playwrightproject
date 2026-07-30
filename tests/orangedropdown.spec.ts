@@ -25,7 +25,7 @@ await page.locator('form i').nth(2).click();
 
 })
 
-test.only("Bootsrtap hidden dropdown", async ({page})=>{
+test("Bootsrtap hidden dropdown", async ({page})=>{
 
 
     await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");

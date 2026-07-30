@@ -2,23 +2,31 @@ import { test, expect } from "@playwright/test";
 
 test('Get booking details by Id- path param', async ({ request }) => {
 
-    const bookingId = 1; // we can this as path parameter
+    const listResponse = await request.get('/booking');
+    expect(listResponse.ok()).toBeTruthy();
 
-    //sending get request along with path parameter
+    const bookings = await listResponse.json();
+    expect(Array.isArray(bookings)).toBeTruthy();
+    expect(bookings.length).toBeGreaterThan(0);
+
+    const bookingId = bookings[0].bookingid;
+    expect(typeof bookingId).toBe('number');
+
     const response = await request.get(`/booking/${bookingId}`);
+    expect(response.ok()).toBeTruthy();
+    expect(response.status()).toBe(200);
 
-    //parse the response and print
     const responseBody = await response.json();
     console.log(responseBody);
 
-    //add assertions
-    expect(response.ok()).toBeTruthy();
-    expect(response.status()).toBe(200);
+    expect(responseBody).toHaveProperty('firstname');
+    expect(responseBody).toHaveProperty('lastname');
+    expect(responseBody).toHaveProperty('bookingdates');
 
 })
 
 
-test.only('Get booking details by Name- query params', async ({ request }) => {
+test('Get booking details by Name- query params', async ({ request }) => {
 
     const firstname = "Jim";
     const lastname = "Brown";

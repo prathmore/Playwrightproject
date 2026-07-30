@@ -14,7 +14,8 @@ import Ajv from 'ajv';
 
 //1) 
 test('Validate JSON response with schema1', async ({ request }) => {
-    const response = await request.get('https://mocktarget.apigee.net/json');
+    const response = await request.get('https://jsonplaceholder.typicode.com/users/1');
+    expect(response.ok()).toBeTruthy();
     const responsebody = await response.json();
     console.log(responsebody)
 
@@ -22,13 +23,13 @@ test('Validate JSON response with schema1', async ({ request }) => {
     const schema = {
         type: 'object',
         properties: {
-            firstName: { type: 'string' },
-            lastName: { type: 'string' },
-            city: { type: 'string' },
-            state: { type: 'string' },
+            id: { type: 'integer' },
+            name: { type: 'string' },
+            username: { type: 'string' },
+            email: { type: 'string' },
         },
-        required: ['firstName', 'lastName', 'city', 'state'],
-        additionalProperties: false,
+        required: ['id', 'name', 'username', 'email'],
+        additionalProperties: true,
     };
 
     const ajv = new Ajv();   // Initialize Ajv
@@ -43,7 +44,7 @@ test('Validate JSON response with schema1', async ({ request }) => {
 //2) 
 
 
-test.only('Validate JSON response with schema2', async ({ request }) => {
+test('Validate JSON response with schema2', async ({ request }) => {
     const response = await request.get('https://jsonplaceholder.typicode.com/posts/1');
     const responsebody = await response.json();
 

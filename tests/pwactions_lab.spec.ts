@@ -38,7 +38,7 @@ test('Student Registration Form - InputText', async ({ page }) => {
 
 
 
-test.only('Student Registration Form - Radio and Checkbox', async ({ page }) => {
+test('Student Registration Form - Radio and Checkbox', async ({ page }) => {
 
   await page.goto('https://demo.wpeverest.com/user-registration/student-registration-form/');
 

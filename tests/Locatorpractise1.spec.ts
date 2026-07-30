@@ -14,7 +14,7 @@ test('Basic locator', async ({page})=>{
     await page.waitForTimeout(8000);
 
 })
-test.only('switchcasecheckboxselection', async ({page})=>{
+test('switchcasecheckboxselection', async ({page})=>{
 
     await page.goto("https://demowebshop.tricentis.com/");
     const title=page.getByText("Sign up for our newsletter:");

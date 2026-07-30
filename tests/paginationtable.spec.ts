@@ -54,7 +54,7 @@ const enablenextbutton=page.locator('button[class="dt-paging-button next"]');
     }
 
 }})
-test.only('specific row search',async({page})=>{
+test('specific row search',async({page})=>{
 await page.goto('https://datatables.net/examples/basic_init/zero_configuration.html');
 const searchtextbox:any=await page.locator('#dt-search-0').fill('Zorita Serrano');
  /*const enteredvalue= await searchtextbox.inputValue();

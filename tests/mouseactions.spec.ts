@@ -28,7 +28,7 @@ await rightclickbutton.click({button : 'right'});
 await page.waitForTimeout(3000);
 })
 
-test.only('Drag and drop',async ({page})=>{
+test('Drag and drop',async ({page})=>{
 
     await page.goto('http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html#google_vignette');
 

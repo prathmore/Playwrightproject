@@ -138,7 +138,7 @@ for(const label of days)
 await page.waitForTimeout(5000);
 });
 
-test.only('Switchcaseselectcheckbox', async({page}) => {
+test('Switchcaseselectcheckbox', async({page}) => {
 
     await page.goto("https://testautomationpractice.blogspot.com/");
     const Weekdays:string='Friday';

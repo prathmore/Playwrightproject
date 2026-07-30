@@ -48,7 +48,7 @@ expect(mukeshbooks).toHaveLength(2);
 
 })
 
-test.only('totalbookprice', async ({page})=>{
+test('totalbookprice', async ({page})=>{
 
     await page.goto('https://testautomationpractice.blogspot.com/');
 const table:Locator=page.locator('table[name="BookTable"]>tbody');

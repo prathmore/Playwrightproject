@@ -47,7 +47,7 @@ async function Selectdate (Targetyear:string,Targetmonth:string,Targetday:string
  }
 
 }
-test.only('putting condition to select date',async({page})=>{
+test('putting condition to select date',async({page})=>{
 
     
 

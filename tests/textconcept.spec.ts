@@ -49,7 +49,7 @@ test('alltextcontentandallinnertext', async({page})=> {
 
 })
 
-test.only('locatorarray', async({page}) =>{
+test('locatorarray', async({page}) =>{
 
     await page.goto('https://demowebshop.tricentis.com/');
     const producttitle :Locator= page.locator('.product-title');

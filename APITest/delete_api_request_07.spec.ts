@@ -17,7 +17,7 @@ test('Delete booking(end-to-end', async ({ request }) => {
 
     //1) create new booking
 
-    const postrequestBody = readJson('testdata/post_request_body.json');
+    const postrequestBody = readJson('apitestdata/post_request_body.json');
     const postresponse = await request.post("/booking", { data: postrequestBody });
     const postresponseBody = await postresponse.json();  // Extractred response
     console.log(postresponseBody);
@@ -38,14 +38,14 @@ test('Delete booking(end-to-end', async ({ request }) => {
 
     //creating token
 
-    const tokenrequestBody = readJson('testdata/token_request_body.json');
+    const tokenrequestBody = readJson('apitestdata/token_request_body.json');
     const tokenresponse = await request.post('/auth', { data: tokenrequestBody });
     const tokenresponsebody = await tokenresponse.json();
     const token = tokenresponsebody.token;
     console.log("Token ======>", token);
 
     //sending put request
-    const updateRequestbody = readJson('testdata/put_request_body.json');
+    const updateRequestbody = readJson('apitestdata/put_request_body.json');
     const updateresponse = await request.put(`/booking/${bookingid}`,
         {
             headers: { "Cookie": `token=${token}` },
