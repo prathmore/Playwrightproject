@@ -131,7 +131,7 @@ for(const label of days)
     if(label.toLowerCase()===weekname.toLowerCase())
     {
         const checkbox=page.getByLabel(label);
-        checkbox.check();
+        await checkbox.check();
         await expect(checkbox).toBeChecked();
     }
 }
@@ -141,7 +141,7 @@ await page.waitForTimeout(5000);
 test.only('Switchcaseselectcheckbox', async({page}) => {
 
     await page.goto("https://testautomationpractice.blogspot.com/");
-    const Weekdays:string='days';
+    const Weekdays:string='Friday';
     switch (Weekdays)
     {
 

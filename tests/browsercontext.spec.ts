@@ -1,8 +1,8 @@
-import {test,expect,chromium} from '@playwright/test'
+import {test,expect,BrowserContext, chromium, webkit} from '@playwright/test'
 test('browsercontext', async({})=>{
 
-    const browser= await chromium.launch();
-    const context= await browser.newContext();
+    const BrowserContext= await webkit.launch();
+    const context= await BrowserContext.newContext();
     const page1= await context.newPage();
     const page2= await context.newPage();
     console.log("no of pages are :-",context.pages.length);

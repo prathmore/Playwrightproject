@@ -2,7 +2,7 @@ import {test,expect,Locator} from '@playwright/test'
 import fs from 'fs'
 test('@master downloadfile',async({page})=> {
 
-    await page.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html');
+  await page.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html');
 await page.locator('#inputText').fill('Welcomenext');
 await page.locator('#generateTxt').click();
 const [download]=await Promise.all([page.waitForEvent('download'),page.locator('#txtDownloadLink').click()])
@@ -40,9 +40,6 @@ test('@master Download Pdf file and verify it exists', async ({ page}) => {
   const fileExists = fs.existsSync(downloadPath); //checks if the file exists.
   expect(fileExists).toBeTruthy();
 
-  // Clean up downloaded files
-  if (fileExists) {
-    fs.unlinkSync(downloadPath);
-  }
+ 
    
 });
